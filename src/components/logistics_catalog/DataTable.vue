@@ -19,20 +19,7 @@
           <td>Месяц и год запроса</td>
         </tr>
         <tr>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
-          <td><input type="text"></td>
+          <td v-for="item in 14">{{ item }}</td>
         </tr>
       </table>
     </div>
@@ -40,11 +27,14 @@
 
 <script>
     export default {
-
+      props: ['sender', 'senderCity']
     }
 </script>
 
 <style scoped>
+  div {
+    overflow: visible;  
+  }
   table {
     border: 1px solid #000;
     font-size: 14px;
