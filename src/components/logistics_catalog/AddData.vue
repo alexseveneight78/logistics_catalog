@@ -36,7 +36,6 @@
       </tr>
     </table>
     <button @click="submit">Add to Data Table</button>
-    <button @click="fetchData">Fill Table</button>
   </div>
 </template>
 
@@ -67,16 +66,6 @@
         this.$http.post('https://logisticscatalog.firebaseio.com/data.json', this.query)
           .then(response => {
             console.log(response)
-          })
-      },
-      fetchData(){
-        this.$http.get('https://logisticscatalog.firebaseio.com/data.json')
-          .then(response => {
-            return response.json();
-          })
-          .then(data => {
-            const resultArray = [];
-            
           })
       }
     }

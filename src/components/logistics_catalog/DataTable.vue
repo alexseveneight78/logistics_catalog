@@ -1,6 +1,7 @@
 <template>
     <div>
       <h3>Table of Data</h3>
+      <button @click="fetchData">Fill Table</button>
       <table>
         <tr>
           <td>Страна отправления</td>
@@ -19,7 +20,7 @@
           <td>Месяц и год запроса</td>
         </tr>
         <tr>
-          <td v-for="item in 14">{{ item }}</td>
+          <td v-for="item in query">{{ item.sender }}</td>
         </tr>
       </table>
     </div>
@@ -27,7 +28,22 @@
 
 <script>
     export default {
-      props: ['sender', 'senderCity']
+      props: ['query'],
+      methods: {
+      fetchData(){
+        this.$http.get('https://logisticscatalog.firebaseio.com/data.json')
+          .then(response => {
+            return response.json();
+          })
+          .then(data => {
+            const resultArray = [];
+            for(let key in data){
+              resultArray.push(data[key])
+            }
+            this.query = resultArray;
+          })
+      }
+      }
     }
 </script>
 
