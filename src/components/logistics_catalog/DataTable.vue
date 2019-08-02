@@ -19,8 +19,21 @@
           <td>Комментарий</td>
           <td>Месяц и год запроса</td>
         </tr>
-        <tr>
-          <td v-for="item in query">{{ item.sender }}</td>
+        <tr v-for="item in query">
+          <td >{{ item.sender }}</td>
+          <td>{{ item.senderCity }}</td>
+          <td>{{ item.senderPostalCode }}</td>
+          <td>{{ item.destinationCustoms }}</td>
+          <td>{{ item.destinationCity }}</td>
+          <td>{{ item.destination }}</td>
+          <td>{{ item.adr }}</td>
+          <td>{{ item.truckType }}</td>
+          <td>{{ item.customer }}</td>
+          <td>{{ item.customerPrice }}</td>
+          <td>{{ item.carrier }}</td>
+          <td>{{ item.carrierPrice }}</td>
+          <td>{{ item.comments }}</td>
+          <td>{{ item.monthAndYearOfQuery }}</td>
         </tr>
       </table>
     </div>
@@ -43,6 +56,21 @@
             this.query = resultArray;
           })
       }
+      },
+      created(){
+
+        this.$http.get('https://logisticscatalog.firebaseio.com/data.json')
+          .then(response => {
+            return response.json();
+          })
+          .then(data => {
+            const resultArray = [];
+            for(let key in data){
+              resultArray.push(data[key])
+            }
+            this.query = resultArray;
+          })
+          
       }
     }
 </script>
