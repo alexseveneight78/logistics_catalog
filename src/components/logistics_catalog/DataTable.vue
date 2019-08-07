@@ -1,6 +1,7 @@
 <template>
     <div>
-      <h3>Table of Data</h3>
+      <app-data></app-data>
+      <h3>COMPONENT - Table of Data</h3>
       <button @click="fetchData">Fill Table</button>
       <table>
         <tr>
@@ -40,9 +41,29 @@
 </template>
 
 <script>
-    export default {
-      props: ['query'],
-      methods: {
+  import AddData from './AddData.vue';
+  export default {
+    data(){
+      return {
+        query: {
+          sender: '',
+          senderCity: '',
+          senderPostalCode: '',
+          destinationCustoms: '',
+          destinationCity: '',
+          destination: '',
+          adr: '',
+          truckType: '',
+          customer: '',
+          customerPrice: '',
+          carrier: '',
+          carrierPrice: '',
+          comments: '',
+          monthAndYearOfQuery: ''
+        }          
+    }
+    },
+    methods: {  
       fetchData(){
         this.$http.get('https://logisticscatalog.firebaseio.com/data.json')
           .then(response => {
@@ -56,23 +77,25 @@
             this.query = resultArray;
           })
       }
-      },
-      created(){
-
-        this.$http.get('https://logisticscatalog.firebaseio.com/data.json')
-          .then(response => {
-            return response.json();
-          })
-          .then(data => {
-            const resultArray = [];
-            for(let key in data){
-              resultArray.push(data[key])
-            }
-            this.query = resultArray;
-          })
-          
-      }
+    },
+    created(){
+      this.$http.get('https://logisticscatalog.firebaseio.com/data.json')
+        .then(response => {
+          return response.json();
+        })
+        .then(data => {
+          const resultArray = [];
+          for(let key in data){
+            resultArray.push(data[key])
+          }
+          this.query = resultArray;
+        })
+        
+    },
+    components: {
+      'app-data': AddData
     }
+  }
 </script>
 
 <style scoped>

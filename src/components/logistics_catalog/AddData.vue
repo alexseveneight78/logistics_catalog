@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>Add Data Template</h3>
+    <h3>COMPONENT - Add Data Template</h3>
     <table>
       <tr>
         <td>Страна отправления</td>
@@ -58,7 +58,7 @@
           carrierPrice: '',
           comments: '',
           monthAndYearOfQuery: ''
-        }
+        }          
       }
     },
     methods: {
